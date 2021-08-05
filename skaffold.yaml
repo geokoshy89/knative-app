@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta5
+kind: Config
+metadata:
+  name: sample-spring-boot-on-kubernetes
+build:
+  artifacts:
+    - image: foo/sample-spring-boot-on-kubernetes
+      jib:
+        args:
+          - -Pjib
+  tagPolicy:
+    gitCommit: {}
+deploy:
+  kubectl:
+    manifests:
+      - k8s/mongo-deployment.yaml
+      - k8s/appservice.yaml

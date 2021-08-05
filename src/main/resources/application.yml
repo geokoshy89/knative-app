@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: sample-spring-boot-on-kubernetes
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb/${MONGO_DATABASE}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint.health:
+      show-details: always
+      group:
+        readiness:
+          include: mongo
+      probes:
+        enabled: true
